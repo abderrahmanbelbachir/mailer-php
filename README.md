@@ -27,37 +27,32 @@ The Mailer class is a versatile email-sending class that provides a unified inte
 `composer install`
 
 
-## Usage
+## Usage ( PHPMailer sample)
 
 1. Include the `Mailer.php` file in your project:
+    `require_once 'Mailer.php';`
+2. Create an instance of Mailer :
+    `$mailer = new Mailer();`
+3. Select the API :
+    `$mailer->selectAPI('PHPMailer');`
+4. Enable SMTPAuth :
+   `$mailer->setSMTPAuth(true);`
+5. Past your SMTPCredentials:
+   `$mailer->setSMTPCredentials('host', 'email', 'password',
+   'encryption', 'port');`
+6. Set From email and name :
+   `$mailer->setFrom('email@domain.com', 'From_name');`
+7. Add recipient :
+   `$mailer->addTo(['recipient@domain.com']);`
+8. Set subject :
+    `$mailer->setSubject('Test Email');`
+9. If you want to send a text message :
+   `$mailer->addTextVersion('This is the plain text version of the email.');`
+10. If you want to send an html message :
+    `$mailer->addHTMLVersion('<p>This is the HTML version of the email.</p>');`
+11. Send your mail :
+    `$result = $mailer->send();`
 
-`
-require_once 'path/to/Mailer.php';
-`
-
-`$mailer = new Mailer();`
-
-`$mailer->setFrom('sender@example.com', 'Sender Name');`
-
-`$mailer->addTo(['recipient1@example.com' => 'Recipient 1', 'recipient2@example.com' => 'Recipient 2']);`
-
-`$mailer->setSubject('Hello from Mailer Class');`
-
-`$mailer->setHTML(true);`
-
-`$mailer->setBody('<p>This is the HTML content of the email.</p>');`
-
-`$mailer->addAttachment('/path/to/file.pdf');`
-
-`$mailer->selectAPI('PHPMailer');`
-
-`
-if ($mailer->send()) {
-echo 'Email sent successfully.';
-} else {
-echo 'Failed to send the email. Error: ' . implode(', ', $mailer->getErrors());
-}
-`
 
 # Demo
 
